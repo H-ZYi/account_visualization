@@ -9,16 +9,21 @@
     <!-- 引入 jsmind 的 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/style/jsmind.css">
     
-    <!-- 引入 jsMind 的 JavaScript 文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/jsmind.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/jsmind.draggable-node.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/jsmind.screenshot.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/jsmind.shortcut_provider.js"></script>
+    <!-- 引入 jsmind 和其他插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.8.5/js/jsmind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.8.5/js/jsmind.draggable-node.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.8.5/js/jsmind.screenshot.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsmind@0.8.5/es6/jsmind.shortcut_provider.js"></script>
 
+    <!-- 本地 JavaScript 文件 -->
+    <script src="{% static 'js/mind_map.js' %}"></script>
+
+    <!-- dom-to-image for 截圖功能 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 
+    <!-- favicon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- 空的 favicon 以消除 404 錯誤 -->
-    
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
 </head>
