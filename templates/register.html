@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊帳號</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>註冊帳號</h2>
+
+        <!-- 顯示註冊訊息 -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">帳號名稱：</label>
+            <input type="text" id="username" name="username" required>
+            <small>提示：用戶名應至少3個字符</small>
+
+            <label for="password">密碼：</label>
+            <input type="password" id="password" name="password" required>
+            <small>提示：密碼應至少6個字符</small>
+
+            <label for="password-confirm">確認密碼：</label>
+            <input type="password" id="password-confirm" name="password-confirm" required>
+
+            <button type="submit">註冊</button>
+        </form>
+
+        <a href="{% url 'login' %}">已有帳號？點此登入</a>
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+</body>
+</html>

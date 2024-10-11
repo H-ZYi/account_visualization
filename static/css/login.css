@@ -1,0 +1,80 @@
+/* 設定頁面佈局，背景顏色，和中央對齊 */
+body, html {
+    margin: 0; /* 移除預設邊距 */
+    padding: 0; /* 移除預設內距 */
+    height: 100vh; /* 設定高度為100%視窗高度 */
+    display: flex; /* 使用彈性盒模型，讓元素方便水平與垂直對齊 */
+    justify-content: center; /* 水平置中對齊 */
+    align-items: center; /* 垂直置中對齊 */
+    background-color: #2c3e50; /* 設定背景顏色為深藍色 */
+    font-family: Arial, sans-serif; /* 使用Arial字體，次選sans-serif */
+}
+
+/* 表單容器的樣式 */
+.form-container {
+    background-color: #34495e; /* 容器的背景顏色為深藍灰色 */
+    padding: 40px; /* 設定內距，讓內容有足夠空間 */
+    border-radius: 10px; /* 圓角樣式 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 加入陰影效果，讓容器有浮動感 */
+    text-align: center; /* 文字居中對齊 */
+    width: 350px; /* 設定容器寬度為350px */
+}
+
+/* 標題樣式 */
+h2 {
+    color: #ffffff; /* 標題文字顏色設為白色 */
+    margin-bottom: 20px; /* 標題與下方元素之間的距離 */
+    font-size: 24px; /* 設定字體大小 */
+}
+
+/* 輸入框與標籤的通用樣式 */
+label, input {
+    color: #ffffff; /* 標籤與輸入框文字顏色 */
+    display: block; /* 設定每個標籤和輸入框獨占一行 */
+    width: 100%; /* 設定輸入框與標籤寬度為100% */
+    margin-bottom: 15px; /* 每個輸入框與下個元素之間的距離 */
+}
+
+input {
+    padding: 10px; /* 設定輸入框的內距 */
+    border-radius: 5px; /* 設定圓角樣式 */
+    border: 1px solid #ccc; /* 設定邊框顏色 */
+    width: 100%; /* 輸入框寬度設為100% */
+    background-color: #fff; /* 輸入框的背景設為白色 */
+    color: #000; /* 確保文字顏色為黑色 */
+}
+
+/* 登入按鈕樣式 */
+button {
+    padding: 10px 20px; /* 設定按鈕的內距 */
+    background-color: #1abc9c; /* 設定按鈕背景顏色為綠色 */
+    color: white; /* 按鈕文字顏色設為白色 */
+    border: none; /* 移除按鈕邊框 */
+    border-radius: 5px; /* 設定按鈕圓角 */
+    cursor: pointer; /* 設定滑鼠指標變為指針 */
+    font-size: 1rem; /* 設定按鈕文字大小 */
+    width: 100%; /* 設定按鈕寬度與表單一致 */
+}
+
+/* 當滑鼠懸停在按鈕上時，背景顏色變深 */
+button:hover {
+    background-color: #16a085;
+}
+
+/* 顯示密碼的勾選框樣式 */
+.form-group-inline {
+    display: flex; /* 使用彈性盒模型，讓勾選框和文字方便對齊 */
+    align-items: center; /* 設定元素垂直對齊 */
+    justify-content: flex-end; /* 將勾選框與文字靠右對齊 */
+}
+
+.form-group-inline input[type="checkbox"] {
+    margin-left: 210px; /* 設定勾選框與文字間的距離 */
+}
+
+/* 註冊連結樣式 */
+a {
+    color: #ecf0f1; /* 設定連結文字顏色 */
+    display: block; /* 設定連結獨占一行 */
+    margin-top: 20px; /* 與上方元素保持距離 */
+}

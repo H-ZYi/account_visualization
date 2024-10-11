@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入帳號</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>登入帳號</h2>
+
+        <!-- 顯示登入訊息 -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <!-- 帳號輸入框 -->
+            <div class="form-group">
+                <label for="username">帳號名稱：</label>
+                <input type="text" id="username" name="username" placeholder="輸入帳號名稱">
+            </div>
+            
+            <!-- 密碼輸入框 -->
+            <div class="form-group">
+                <label for="password">密碼：</label>
+                <input type="password" id="password" name="password" placeholder="輸入密碼">
+            </div>
+            
+            <!-- 顯示密碼勾選框 -->
+            <div class="form-group-inline">
+                <input type="checkbox" id="show-password">
+                <label for="show-password">顯示密碼</label>
+            </div>
+
+            <!-- 登入按鈕 -->
+            <button type="submit">登入</button>
+        </form>
+
+        <!-- 註冊連結 -->
+        <a href="{% url 'register' %}">沒有帳號？點此註冊</a>
+    </div>
+
+    <script src="{% static 'js/login.js' %}"></script> <!-- 密碼顯示切換功能的腳本 -->
+</body>
+</html>
