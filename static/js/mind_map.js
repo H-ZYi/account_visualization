@@ -22,6 +22,8 @@ const options = {
     mode: 'full', // 全模式展示
     view: {
         draggable: true, // 整體圖形拖動
+        hmargin: 100, // 左右邊距
+        vmargin: 50,  // 上下邊距
         line_style: 'curved', // 線條樣式
         zoom: {
             min: 0.5,
@@ -45,20 +47,13 @@ const options = {
         }
     }
 };
+
 const jm = new jsMind(options);
 jm.show(minddata);
 
-jm.add_event_listener(function (event_type, data) {
-    if (event_type === 'node_click') {
-        console.log('Node clicked:', data);
-    }
-    if (event_type === 'node_dragstart') {
-        console.log('Node drag started:', data);
-    }
-    if (event_type === 'node_dragend') {
-        console.log('Node drag ended:', data);
-    }
-});
+const shortcutProvider = new ShortcutProvider(jm, options.shortcut);
+shortcutProvider.init();
+const draggable = new DraggableNode(jm, options.view);
+draggable.init();
 
-
-jm.draggable_node({node_id: selectedNodeId, x: offsetX, y: offsetY});
+jm.shoot(); // 在需要截圖的地方調用此方法
