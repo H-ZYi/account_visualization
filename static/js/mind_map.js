@@ -19,15 +19,15 @@ window.onload = function() {
         support_html : true,         // 是否支持节点里的HTML元素
         log_level: 'disable',        // 日志级别
         view: {
-            engine: 'svg',           // 思维导图各节点之间线条的绘制引擎
+        /*  engine: 'svg',           // 思维导图各节点之间线条的绘制引擎
             hmargin:100,             // 思维导图距容器外框的最小水平距离
             vmargin:50,              // 思维导图距容器外框的最小垂直距离
             line_width:2,            // 思维导图线条的粗细
             line_color:'#555',       // 思维导图线条的颜色
             line_style: 'curved',    // 思维导图线条的样式，直线(straight)或者曲线(curved)
             custom_line_render: null,// 自定义的线条渲染方法
-            draggable: false,         // 当容器不能完全容纳思维导图时，是否允许拖动画布代替鼠标滚动
-            hide_scorllbars_when_draggable: false, // 当设置 draggable = true 时，是否隐藏滚动条
+            draggable: true,         // 当容器不能完全容纳思维导图时，是否允许拖动画布代替鼠标滚动
+            hide_scorllbars_when_draggable: false, // 当设置 draggable = true 时，是否隐藏滚动条 */
             node_overflow: 'wrap',   // 节点文本过长时的样式,展開(wrap)或隱藏部分文本(hidden)
             zoom: {                  // 配置缩放
                 min: 0.5,            // 最小的缩放比例
