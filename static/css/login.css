@@ -44,6 +44,12 @@ input {
     color: #000; /* 確保文字顏色為黑色 */
 }
 
+/* 聚焦時的樣式 */
+input:focus {
+    border-color: #1abc9c;
+    outline: none;
+}
+
 /* 登入按鈕樣式 */
 button {
     padding: 10px 20px; /* 設定按鈕的內距 */
@@ -61,6 +67,13 @@ button:hover {
     background-color: #16a085;
 }
 
+/* 註冊連結樣式 */
+a {
+    color: #ecf0f1; /* 設定連結文字顏色 */
+    display: block; /* 設定連結獨占一行 */
+    margin-top: 20px; /* 與上方元素保持距離 */
+}
+
 /* 顯示密碼的勾選框樣式 */
 .form-group-inline {
     display: flex; /* 使用彈性盒模型，讓勾選框和文字方便對齊 */
@@ -70,11 +83,4 @@ button:hover {
 
 .form-group-inline input[type="checkbox"] {
     margin-left: 210px; /* 設定勾選框與文字間的距離 */
-}
-
-/* 註冊連結樣式 */
-a {
-    color: #ecf0f1; /* 設定連結文字顏色 */
-    display: block; /* 設定連結獨占一行 */
-    margin-top: 20px; /* 與上方元素保持距離 */
 }

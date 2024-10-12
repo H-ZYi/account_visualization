@@ -1,4 +1,4 @@
-body, html {
+ body, html {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -37,6 +37,14 @@ input {
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
+    background-color: #fff; /* 設定背景顏色 */
+    color: #000; /* 設定文字顏色 */
+}
+
+/* 聚焦時的樣式 */
+input:focus {
+    border-color: #1abc9c;
+    outline: none;
 }
 
 button {
@@ -58,4 +66,15 @@ a {
     color: #ecf0f1;
     display: block;
     margin-top: 20px;
+}
+
+/* 顯示密碼的勾選框樣式 */
+.form-group-inline {
+    display: flex; /* 使用彈性盒模型，讓勾選框和文字方便對齊 */
+    align-items: center; /* 設定元素垂直對齊 */
+    justify-content: flex-end; /* 將勾選框與文字靠右對齊 */
+}
+
+.form-group-inline input[type="checkbox"] {
+    margin-left: 210px; /* 設定勾選框與文字間的距離 */
 }

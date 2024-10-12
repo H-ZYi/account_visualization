@@ -27,6 +27,10 @@ def login_view(request):
 
         user = authenticate(request, username=username, password=password)
 
+        # 在處理登入前先清除殘留訊息
+        storage = messages.get_messages(request)
+        storage.used = True  # 清除所有殘留訊息
+
         if user is not None:
             login(request, user)
             messages.success(request, '登入成功！')
@@ -43,6 +47,10 @@ def register(request):
         username = request.POST['username']
         password = request.POST['password']
         password_confirm = request.POST['password-confirm']
+
+        # 在處理登入前先清除殘留訊息
+        storage = messages.get_messages(request)
+        storage.used = True  # 清除所有殘留訊息
 
         # 檢查密碼是否匹配
         if password != password_confirm:
