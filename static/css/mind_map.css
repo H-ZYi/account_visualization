@@ -16,7 +16,8 @@ body {
     top: 50px;
     left: 0;
     overflow: hidden; /* 確保多餘內容不會影響顯示 */
-    cursor: default; /* 提示可以拖動 */
+    cursor: grab; /* 提示可以拖動 */
+    transition: transform 0.1s ease;
 }
 
 .jmnode {

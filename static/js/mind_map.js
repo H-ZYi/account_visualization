@@ -30,6 +30,33 @@ window.onload = function() {
     const jm = new jsMind(options);
     jm.show(minddata);
 
-    const shortcutProvider = new ShortcutProvider(jm, options.shortcut);
-    shortcutProvider.init();
+    const container = document.getElementById('jsmind_container');
+    let isDragging = false;
+    let startX, startY;
+    let currentTranslateX = 0, currentTranslateY = 0;
+
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - currentTranslateX;
+        startY = e.clientY - currentTranslateY;
+        container.style.cursor = 'grabbing';
+    });
+
+    container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentTranslateX = e.clientX - startX;
+        currentTranslateY = e.clientY - startY;
+        container.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px)`;
+    });
+
+    // 結束拖動時恢復游標樣式
+    container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
 };
