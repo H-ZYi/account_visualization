@@ -15,8 +15,8 @@ window.onload = function() {
         container: 'jsmind_container', // 容器的ID
         editable: true,              // 是否启用编辑
         theme: 'greensea',           // 主题
-        mode :'full',                // 布局模式
-        support_html : true,         // 是否支持节点里的HTML元素
+        //mode :'full',                // 布局模式
+        //support_html : true,         // 是否支持节点里的HTML元素
         log_level: 'disable',        // 日志级别
         view: {
         /*  engine: 'svg',           // 思维导图各节点之间线条的绘制引擎
