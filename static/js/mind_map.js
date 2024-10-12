@@ -33,15 +33,15 @@ window.onload = function() {
                 min: 0.5,            // 最小的缩放比例
                 max: 2.0,            // 最大的缩放比例
                 step: 0.1 },         // 缩放比例间隔
-            custom_node_render: null,// 自定义的节点渲染方法
-            expander_style: 'char',  // 子節點展開控制器樣式
+            //custom_node_render: null,// 自定义的节点渲染方法
+            //expander_style: 'char',  // 子節點展開控制器樣式
         },
-        layout: {
+        /*layout: {
             hspace:30,               // 节点之间的水平间距
             vspace:20,               // 节点之间的垂直间距
             pspace:13,               // 节点与连接线之间的水平间距（用于容纳节点收缩/展开控制器）
             cousin_space:0           // 相邻节点的子节点之间的额外的垂直间距
-        },
+        },*/
         shortcut: {
             enable: true,            // 是否启用快捷键
             handles:{                // 命名的快捷键事件处理器
