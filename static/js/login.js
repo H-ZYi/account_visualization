@@ -13,3 +13,14 @@ togglePassword.addEventListener('change', function () {
         passwordInput.type = 'password'; // 隱藏密碼
     }
 });
+
+// 確保頁面回到上一頁時清除訊息
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) { // 檢查是否來自瀏覽器快取
+        const messages = document.querySelector('.messages');
+        if (messages) {
+            messages.innerHTML = ''; // 清除訊息內容
+            messages.style.display = 'none'; // 隱藏訊息區塊
+        }
+    }
+});

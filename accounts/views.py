@@ -9,6 +9,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_control
 
 
 # 首頁：僅顯示帳號管理系統字樣
@@ -20,6 +21,7 @@ def main(request):
     return render(request, 'main.html')
 
 # 登入
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -42,6 +44,7 @@ def login_view(request):
     return render(request, 'login.html')
 
 # 註冊
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
