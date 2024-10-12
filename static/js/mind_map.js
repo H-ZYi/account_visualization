@@ -26,7 +26,7 @@ window.onload = function() {
             line_color:'#555',       // 思维导图线条的颜色
             line_style: 'curved',    // 思维导图线条的样式，直线(straight)或者曲线(curved)
             custom_line_render: null,// 自定义的线条渲染方法
-            draggable: true,         // 当容器不能完全容纳思维导图时，是否允许拖动画布代替鼠标滚动
+            draggable: false,         // 当容器不能完全容纳思维导图时，是否允许拖动画布代替鼠标滚动
             hide_scorllbars_when_draggable: false, // 当设置 draggable = true 时，是否隐藏滚动条
             node_overflow: 'wrap',   // 节点文本过长时的样式,展開(wrap)或隱藏部分文本(hidden)
             zoom: {                  // 配置缩放
