@@ -35,8 +35,10 @@
         <div class="logout">
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">登出</button>
+                <button type="button" onclick="saveAndLogout()">登出</button> 
+                <!-- 修改登出按鈕並添加儲存邏輯 -->
             </form>
+            <button onclick="saveMindMap()">儲存</button> <!-- 添加儲存按鈕 -->
         </div>
         <div class="search-bar">
             <input type="text" placeholder="搜尋帳號或資料...">

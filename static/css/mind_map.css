@@ -55,6 +55,20 @@ body {
     padding-right: 20px;
 }
 
+.logout button, .logout form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.logout button:hover, .logout form button:hover {
+    background-color: #0056b3;
+}
+
 .search-bar {
     position: absolute;
     left: 20px;

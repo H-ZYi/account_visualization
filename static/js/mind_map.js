@@ -1,4 +1,34 @@
+
+// 獲取 CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+let jm; // 定義全局變數
+
+// 1. 載入心智圖數據
 window.onload = function() {
+
+    const logoutForm = document.getElementById("logout-form");
+    if (logoutForm) {
+        logoutForm.submit();
+    } else {
+        console.error("找不到 'logout-form' 元素");
+    }
+
+    /*
     const minddata = {
         "meta": { "name": "example", "author": "jsMind" },
         "format": "node_tree",
@@ -10,6 +40,7 @@ window.onload = function() {
             ]
         }
     };
+    */
 
     const options = {
         container: 'jsmind_container', // 容器的ID
@@ -61,10 +92,114 @@ window.onload = function() {
         }
     };
 
-    const jm = new jsMind(options);
-    jm.show(minddata);
+    jm = new jsMind(options);  // 初始化 jsMind
+
+    //const jm = new jsMind(options);  // 初始化 jsMind
+    fetch('/api/load_mindmap/')
+    .then(response => response.json())
+    .then(data => {
+        if (data && data.format === 'node_tree') { // 確保數據格式為 node_tree，初始化心智圖
+            jm.show(data); // 使用 API 獲取的數據初始化心智圖
+        } else {
+            console.log('無儲存數據');
+        }
+    })
+    .catch(error => console.error('載入錯誤:', error));
+
+    const container = document.getElementById('jsmind_container');
+    if (container) {
+        container.addEventListener("change", function() {
+            const mindMapData = jm.get_data();
+            saveMindMapData(mindMapData); // 自動儲存
+        });
+    } else {
+        console.error("無法找到 jsmind_container 元素");
+    }
+
+    //jm.show(data);
 
     const shortcutProvider = new ShortcutProvider(jm, options.shortcut);
     shortcutProvider.init();
 
 };
+
+// 2. 儲存心智圖數據
+function saveMindMapData() {
+    if (jm) {
+        const mindMapData = jm.get_data('node_tree'); // 取得 node_tree 格式數據
+        fetch('/api/save_mindmap/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify(mindMapData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('儲存錯誤，伺服器返回了錯誤狀態');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                console.log('儲存成功');
+                document.getElementById("save-status").innerText = "數據已保存";
+            } else {
+                console.error('儲存失敗:', data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('儲存錯誤:', error);
+        });
+    } else {
+        console.error("jsMind 實例尚未初始化");
+    }
+}
+
+// 3. 操作時觸發自動儲存
+// 監聽心智圖操作事件
+document.getElementById("jsmind_container").addEventListener("change", function() {
+    //const mindMapData = jm.get_data();
+    saveMindMapData(mindMapData); // 每次操作後自動儲存
+});
+
+// 4. 當使用者試圖離開頁面時提醒
+window.addEventListener("beforeunload", function (e) {
+    // 檢查是否有未保存的變更（可以增加條件判斷）
+    const confirmationMessage = '您有未保存的變更，確定要離開此頁面嗎？';
+    e.returnValue = confirmationMessage; // 設定訊息
+    //event.returnValue = confirmationMessage; // 設定訊息，這是標準寫法
+    //(e || window.event).returnValue = confirmationMessage; // 這行是針對某些瀏覽器的相容性
+    return confirmationMessage;
+});
+
+
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted) { // 當頁面來自快取時
+        location.reload(); // 強制重新加載頁面
+    }
+});
+
+// 手動儲存的函數
+function saveMindMap() {
+    if (jm) {
+        const mindMapData = jm.get_data();
+        saveMindMapData(mindMapData); // 呼叫儲存心智圖數據的函數
+    } else {
+        console.error("jsMind 實例尚未初始化");
+    }
+}
+
+// 登出前自動儲存並登出
+function saveAndLogout() {
+    if (jm) {
+        const mindMapData = jm.get_data();
+        saveMindMapData(mindMapData); // 儲存當前數據
+        setTimeout(() => {
+            document.getElementById("logout-form").submit(); // 提交登出表單
+        }, 500); // 延遲 0.5 秒，確保儲存完成後才登出
+    } else {
+        console.error("jsMind 實例尚未初始化");
+    }
+}
